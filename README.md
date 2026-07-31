@@ -22,7 +22,7 @@
 
 이후 ECR Private Repository(`workshop/python-lab`)를 생성하고, Amazon Inspector의 Enhanced Scanning을 활성화했다. 처음에는 ECR 기본 스캔만 있는 줄 알았는데, 기본 스캔은 OS 패키지만 보고 Enhanced scanning(Inspector)은 npm/pip 같은 언어 패키지 의존성까지 잡아준다는 걸 알게 되어 Enhanced로 진행했다.
 
-Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 `crane`이라는 CLI 도구를 이용해서 이미지를 복사했다. Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 crane이라는 CLI 도구를 이용해서 이미지를 복사했다. 별도의 Docker 환경을 만들지 않아도 되어 CloudShell에서 실습하기 편했다.
+Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 crane이라는 CLI 도구를 이용해서 이미지를 복사했다. 별도의 Docker 환경을 만들지 않아도 되어 CloudShell에서 실습하기 편했다.
 
 ```bash
 export REGION=ap-northeast-2
