@@ -11,8 +11,8 @@
 
 | 구분 | 이미지 |
 |---|---|
-| Before (취약) | `python:3.6-slim` |
-| After (개선) | `python:3.12-slim` |
+| Before (취약) | python:3.6-slim |
+| After (개선) | python:3.12-slim |
 
 ## 진행 절차
 
@@ -56,10 +56,10 @@ crane copy --platform linux/amd64 \
 베이스 이미지를 3.6 → 3.12로 최신화한 것만으로 Critical 취약점이 전부 해소되고, High도 88건에서 3건으로 크게 줄어든 것을 확인했습니다.
 
 ### Before 스캔 결과
-![before scan](./images/before_scan.png)
+![before_scan](./images/before_scan.png)
 
 ### After 스캔 결과
-![after scan](./images/after_scan.png)
+![after_scan](./images/after_scan.png)
 
 ## 정리
 
