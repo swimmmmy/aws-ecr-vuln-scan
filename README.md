@@ -22,7 +22,7 @@
 
 이후 ECR Private Repository(`workshop/python-lab`)를 생성하고, Amazon Inspector의 Enhanced Scanning을 활성화했다. 처음에는 ECR 기본 스캔만 있는 줄 알았는데, 기본 스캔은 OS 패키지만 보고 Enhanced scanning(Inspector)은 npm/pip 같은 언어 패키지 의존성까지 잡아준다는 걸 알게 되어 Enhanced로 진행했다.
 
-Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 `crane`이라는 CLI 도구를 이용해서 이미지를 복사했다. CloudShell에서 실습하기 편했다.
+Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 `crane`이라는 CLI 도구를 이용해서 이미지를 복사했다. Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 crane이라는 CLI 도구를 이용해서 이미지를 복사했다. 별도의 Docker 환경을 만들지 않아도 되어 CloudShell에서 실습하기 편했다.
 
 ```bash
 export REGION=ap-northeast-2
@@ -74,7 +74,7 @@ sudo rm -f /usr/local/bin/crane
 
 이번 실습에서는 애플리케이션 코드를 변경하지 않고도 베이스 이미지만 최신 버전으로 바꾸는 것만으로 취약점을 크게 줄일 수 있다는 점을 확인했다.
 
-평소에는 Docker 이미지를 받을 때 태그만 보고 선택했는데, 앞으로는 최신 LTS 이미지를 쓰고 있는지, 취약점 스캔 결과는 어떤지도 같이 확인해야겠다는 생각이 들었다.
+평소에는 Docker 이미지를 받을 때 태그만 보고 선택했는데, 앞으로는 최신 이미지를 쓰고 있는지, 취약점 스캔 결과는 어떤지도 같이 확인해야겠다는 생각이 들었다.
 
 또 Amazon Inspector는 이미지를 올리기만 해도 자동으로 취약점을 분석해 주는 점이 편했다. 나중에 실제 프로젝트를 하게 된다면 이런 자동 스캔 기능도 같이 사용해 보면 좋겠다는 생각이 들었다.
 
