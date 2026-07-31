@@ -23,7 +23,7 @@
 
 이후 ECR Private Repository(`workshop/python-lab`)를 생성하고, Amazon Inspector의 Enhanced Scanning을 활성화했다. 처음에는 ECR 기본 스캔만 있는 줄 알았는데, 기본 스캔은 OS 패키지만 보고 Enhanced scanning(Inspector)은 npm/pip 같은 언어 패키지 의존성까지 잡아준다는 걸 알게 되어 Enhanced로 진행했다.
 
-Docker 대신 `crane`이라는 CLI 도구를 이용해 이미지를 복사했다. Docker 데몬 설치 없이도 레지스트리 간 이미지 복사가 가능해서 CloudShell 환경에서 편하게 쓸 수 있었다.
+Docker를 설치하지 않아도 이미지를 바로 복사할 수 있는 `crane`이라는 CLI 도구를 이용해서 이미지를 복사했다. CloudShell에서 실습하기 편했다.
 
 ```bash
 export REGION=ap-northeast-2
@@ -53,13 +53,13 @@ crane copy --platform linux/amd64 \
 | Before (3.6-slim) | 25 | 88 |
 | After (3.12-slim) | 0 | 3 |
 
-오래된 Python 3.6 이미지는 Critical과 High 취약점이 많이 발견되었다. 최신 Python 3.12 이미지로 변경한 뒤에는 Critical 취약점이 모두 사라지고 High도 크게 감소하는 것을 확인하였다. 애플리케이션 코드는 전혀 건드리지 않았는데도 이 정도 차이가 난다는 게 인상 깊었다.
+오래된 Python 3.6 이미지는 Critical과 High 취약점이 많이 발견되었다. 최신 Python 3.12 이미지로 변경한 뒤에는 Critical 취약점이 모두 사라지고 High도 크게 감소하는 것을 확인하였다. 베이스 이미지만 바꿨는데도 취약점 개수가 크게 줄어드는 것이 생각보다 신기했다.
 
 ### Before 스캔 결과
-![before scan](./images/before_scan.png)
+![before scan](./before_scan.png)
 
 ### After 스캔 결과
-![after scan](./images/after_scan.png)
+![after scan](./after_scan.png)
 
 ## 정리
 
@@ -77,4 +77,6 @@ sudo rm -f /usr/local/bin/crane
 
 평소에는 Docker 이미지를 받을 때 태그만 보고 선택했는데, 앞으로는 최신 LTS 이미지를 쓰고 있는지, 취약점 스캔 결과는 어떤지도 같이 확인해야겠다는 생각이 들었다.
 
-또 Amazon Inspector는 이미지를 업로드하는 것만으로 자동으로 취약점을 분석해주기 때문에, 실제 운영 환경에서도 CI/CD 파이프라인에 넣어서 쓰면 활용도가 높을 것 같다는 생각이 들었다. 컨테이너 보안은 애플리케이션 코드뿐 아니라 베이스 이미지를 최신 상태로 유지하는 것도 중요하다는 걸 알게 됐다.
+또 Amazon Inspector는 이미지를 올리기만 해도 자동으로 취약점을 분석해 주는 점이 편했다. 나중에 실제 프로젝트를 하게 된다면 이런 자동 스캔 기능도 같이 사용해 보면 좋겠다는 생각이 들었다.
+
+이번 실습을 하면서 컨테이너 보안에서는 애플리케이션 코드뿐 아니라 사용하는 베이스 이미지도 꾸준히 최신 상태로 관리해야 한다는 점을 배울 수 있었다.
